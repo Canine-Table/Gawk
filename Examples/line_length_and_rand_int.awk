@@ -14,6 +14,8 @@ BEGIN {
     # prints the field count of the line
     # with the highest field cound
     if(NF > maxfield) maxfield = NF
+    z=(number % 2 == 1 ? "False" : "True")
+
 
 } END {
 
