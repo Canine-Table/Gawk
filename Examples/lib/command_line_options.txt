@@ -1,0 +1,18 @@
+-F _fs                              --field-seperator _fs
+-f _source_file                     --source-file _source_file
+-v var="val"                        --assign var="val"
+-b                                  --characters-as-bytes
+-c                                  --traditional
+-C                                  --copyright
+-d[file]                            --dump-variable[=file]
+-D[file]                            --debug[=file]
+-e program-text                     --source program-text
+-E file                             --exec file
+-g                                  --gen-pot
+-h                                  --help
+-i source-file                      --include source-file
+-l ext                              --load ext
+-L[value]                           --lint[=value]
+-M                                  --bignum
+-n                                 --non-decimal-data
+-W gawk-opt                         --
