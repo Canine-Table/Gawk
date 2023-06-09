@@ -1,0 +1,10 @@
+10:06pm up 21 days, 14:04, 23 users
+User tty login idle JCPU PCPU what
+hzuo ttyV0 8:58pm 9     5 vi p24.tex
+hzang ttyV3 6:37pm 50        -csh
+eklye ttyV5 9:53pm      7    1 em thes.tex
+dportein ttyV6 8:17pm 1:47           -csh
+gierd ttyD3 10:00pm 1        elm
+dave ttyD4 9:47pm   4   4 w
+brent ttyp0 26Jun91 4:46 26:46 4:41 bash
+dave ttyq4 26Jun9115days 46 46 wnewmail
