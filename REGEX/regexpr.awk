@@ -11,3 +11,12 @@
 # wh{3}y = whhhy
 # wh{3,5}y = whhhy, whhhhhy, whhhhhy
 # wh{2,}y = whhy,whhhy,whhhhywhhhhhy and so on
+# [d\]] = d or ]
+# [.ch.] = collating symbol
+# [[=e=]] = equivalents class
+
+
+
+
+
+
