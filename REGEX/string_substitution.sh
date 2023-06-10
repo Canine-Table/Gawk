@@ -3,8 +3,8 @@
 # /regexpr constant/
 # "string literal"
 
-
 echo 'aaaabcd' | awk '{sub(/a+/, "<A>"); print}' # substitution
+echo 'D43F 6401 4536 9C51 D786  DDEA 76F1 A20F F987 672F' | awk '{gsub(/ /, "")} {print}'
 echo "1234567890" | awk 'BEGIN {digits_regex = "[[:digit:]]+"}; $0 ~ digits_regex {print}' # convert a string to a number
 echo "a b c d e f" | awk '{gsub(/\s/, ""); print $0}' # deletes all spaces with
 echo ")*dfshgffg&d@#^!g)68301" | awk '{gsub(/\W/, ""); print }' # prints only alnum characters
