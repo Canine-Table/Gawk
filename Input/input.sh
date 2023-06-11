@@ -17,6 +17,10 @@
 # FS == regexp
 # FS == ""
 
+# getline = 1 'found a record'
+# getline = 0 'end of file'
+# getline = -1 'file can not be opened' ERRNO will tell you what error occurred
+
 #- int(n): returns the integer part of n
 #- log(n): returns the natural logarithm of n
 #- sqrt(n): returns the square root of n
@@ -102,14 +106,33 @@ EOF
     echo "ABCD075BCD156300544E0001000900125349544520494" | awk -v FIELDWIDTHS="-4 5 5 5 5 5" '{for (i=1; i<=NF; i++) print $i}'
     echo "ABCD075BCD156300544E0001000900125349544520494" | awk 'BEGIN {n=3; len=length($0); for (i=1; i<=len/n; i++) FIELDWIDTHS=FIELDWIDTHS n " "} {for (i=1; i<=NF; i++) print $i}'
     echo "1 2 3 4 5" | awk '{split($0, a); print len(a)}'
-    for (i=1; i<=len/n; i++) FIELDWIDTHS=FIELDWIDTHS n " "
+    # for (i=1; i<=len/n; i++) FIELDWIDTHS=FIELDWIDTHS n " "
     echo "1 2 3 4 5" | awk '{split($0, a); print length(a)}'
     echo 69 | gawk '{print sqrt($0)}'
     echo '9 9' | awk '{$0 = $1 ** $2};{print $0}'
     echo '9 9' | awk '{$0 = $1 ^ $2};{print $0}'
     echo -4 |gawk '{val = ($0 * 1 < 0 ? -1 : 1)};{print $0 * val}' # returns absolute value
-} # get_gawk
+    gawk 'BEGIN{RS=""; FS="\n"}{
+
+        print "\nName is:",$1
+        print "Address is:",$2
+        print "City and State are:",$3,""
+
+    }' lib/email_list.txt
 
 
+    echo "Hello world" | awk '{print substr($0, 4, 5)}' # substr('thestring', 'starting character', 'how many characters to print')
+    echo "Hello world" | awk '{print substr($0, length($0) - 2)}'
+    echo "Hello world" | awk '{print substr($0, length($0) - 2)}'
+    echo Hello World this is tom | awk 'BEGIN{FS=" "; i=3} {$i=6; print $0}'
+    echo "Hello world" | awk '{i = index($0, "o")} {print i}'
 
+}; # get_gawk
 
+#echo Hello World this is tom | awk 'BEGIN{i=3};NR==i{$i=6};{print $i}'
+gawk 'BEGIN{FS=" "; total=0}{
+    total+=NF
+    printf "\n$%-5i %i + %i = %-5i %s",FNR,total-NF,NF,total,RS
+}
+    END{print RS,"Total words:",total
+}' lib/email_list.txt

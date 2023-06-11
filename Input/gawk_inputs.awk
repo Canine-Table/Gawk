@@ -20,5 +20,5 @@ func get_csv_info(){
 }
 
 BEGIN{
-    print square(4)\
+
 }
