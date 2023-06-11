@@ -7,4 +7,5 @@ BEGIN{
     printf "\f"
     printf "%c\n", 65
     printf "%*s\n", width, "Hello"
+    printf "%03d\n", 42
 }
