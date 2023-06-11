@@ -45,7 +45,6 @@ BEGIN{
         getline choice < "/dev/tty"
     }
     begining = 0
-    print choice
 }
 {
     switch(choice) {
@@ -63,11 +62,11 @@ BEGIN{
             }
             break
         case 2:
+            words = 0
             for (i = 1; i <= NF; i++) {
                 freq[$i]++
-                if(longest < length($i)) {
-                    longest = length($i)
-                }
+                if(longest < length($i)) longest = length($i)
+                if(NF > words) words = NF
             }
             break
         case "Q":
@@ -83,20 +82,28 @@ BEGIN{
             pad(length(total)+13,"_")
             break
         case 2:
+            v = 0
+            for (i in freq) if(freq[i] > v) v = freq[i]
             longest = longest + 6
-            pad_border(longest,"_",1,"_")
+            characters = 0
+            pad_border(longest+length(v),"_",1,"_")
             for (i in freq){
-                pad_border(longest," ",1,"|")
-                printf "\t| %s: %*i |\n",i,longest-length(i)-4,freq[i]
-                pad_border(longest,"_",1,"+")
+                pad_border(longest+length(v)," ",1,"|")
+                printf "\t| %s: %*i |\n",i,longest-length(i)+length(v)-4,freq[i]
+                pad_border(longest+length(v),"_",1,"+")
+                if(length($0) > characters) characters = length($0)
             }
 
-            padder = sprintf("longest record was %i characters long",longest)
-            print "\n\tlongest record was",longest,"characters long","\t"
+            padder = sprintf("longest record was %i characters long.",characters)
+            print "\n\tlongest record was",characters,"characters long.","\t"
             pad(length(padder),"_")
 
-            padder = sprintf("this document had %i unique words",length(freq))
-            print "\n\tthis document had",length(freq),"unique words"
+            padder = sprintf("longest record was %i words long",words)
+            print "\n\tlongest record was",words,"words long","\t"
+            pad(length(padder),"_")
+
+            padder = sprintf("this document had %i unique words.",length(freq))
+            print "\n\tthis document had",length(freq),"unique words."
             pad(length(padder),"_")
     }
 
